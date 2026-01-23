@@ -1,0 +1,135 @@
+nazev,zamereni,puleny,trida,ucitel,ucebna,pocet_hodin
+M,,,10 L,Pixa,,1
+M,,,10 L,Pixa,,1
+E,,1,10 L,Haraštová,,1
+M,,1,10 L,Pixa,,1
+E,,1,10 L,Haraštová,,1
+M,,1,10 L,Pixa,,1
+Aj,,1,10 L,Weise,,1
+Aj,,1,10 L,Weise,,1
+Aj,,,10 L,Weise,,1
+Aj,,1,10 L,Weise,,1
+Aj,,1,10 L,Weise,,1
+Tv,,,10 L,Petáková,Tělocvična,1
+Nj1,,1,10 L,Břendová,,1
+Nj1,,1,10 L,Břendová,,1
+Nj1,,1,10 L,Břendová,,1
+Nj2,,1,10 L,Kramlová,,1
+Nj2,,1,10 L,Kramlová,,1
+Nj2,,1,10 L,Kramlová,,1
+Čj,,1,10 L,Prausová,,1
+Čj,,1,10 L,Prausová,,1
+Čj,,,10 L,Prausová,,1
+Eu,,1,10 L,Janebová,Eurytmický sál,1
+Eu,,1,10 L,Janebová,Eurytmický sál,1
+Eu,,1,10 L,Janebová,Eurytmický sál,1
+Eu,,1,10 L,Janebová,Eurytmický sál,1
+Inf,,,10 L,Smejkal,,1
+ZSV,,,10 L,Prausová,,1
+Dv,,,10 L,Venclík,,1
+D,,,10 L,Málková,,1
+Vv,,,10 L,Málková,Ateliér,1
+Hv,,,10 L,Čížková,Hudebna,1
+Hv,,,10 L,Čížková,Hudebna,1
+ZSV,,1,11 L,Haraštová,,1
+D,,1,11 L,Málková,,1
+ZSV,,1,11 L,Haraštová,,1
+D,,1,11 L,Málková,,1
+M,,,11 L,Poprocký,,1
+Čj,,,11 L,Prausová,,1
+Tv,,,11 L,Zemánková,Tělocvična,1
+Aj,,,11 L,Weise,,1
+Aj,,,11 L,Weise,,1
+Aj,,1,11 L,Weise,,1
+Aj,,1,11 L,Weise,,1
+Inf,,1,11 L,Smejkal,Počítače,1
+Inf,,1,11 L,Poprocký,Počítače,1
+Eu,,1,11 L,Janebová,Eurytmický sál,1
+Čj,,1,11 L,Prausová,,1
+Eu,,1,11 L,Janebová,Eurytmický sál,1
+Čj,,1,11 L,Prausová,,1
+M,,,11 L,Poprocký,,1
+Inf,,,11 L,Smejkal,,1
+Nj1,,1,11 L,Břendová,,1
+Nj2,,1,11 L,Kramlová,,1
+Vv,,1,11 L,Málková,Ateliér,2
+Dv,,1,11 L,Venclík,,2
+E,,1,11 L,Haraštová,,1
+Rp:volno,,1,11 L,Říhová,,1
+Nj1,,1,11 L,Břendová,,1
+Nj2,,1,11 L,Kramlová,,1
+Eu,,1,11 L,Janebová,Eurytmický sál,1
+Čj,,1,11 L,Prausová,,1
+Eu,,1,11 L,Janebová,Eurytmický sál,1
+Čj,,1,11 L,Prausová,,1
+Hv,,,11 L,Čížková,Hudebna,2
+PED,humanitni,1,12 L,Haraštová,,1
+PED,humanitni,1,12 L,Haraštová,,1
+PED,humanitni,1,12 L,Haraštová,,1
+PSY,humanitni,1,12 L,Říhová,,1
+PSY,humanitni,1,12 L,Říhová,,1
+PSY,humanitni,1,12 L,Říhová,,1
+BiZ,prirodovedny,1,12 L,Kramářová,,1
+BiZ,prirodovedny,1,12 L,Kramářová,,1
+ChZ,prirodovedny,1,12 L,Motyčková,,1
+ChZ,prirodovedny,1,12 L,Motyčková,,1
+Eu,,1,12 L,Janebová,Eurytmický sál,1
+Aj,,1,12 L,Weise,Přednáškový sál,1
+Eu,,1,12 L,Janebová,Eurytmický sál,1
+Aj,,1,12 L,Weise,Přednáškový sál,1
+M,,,12 L,Poprocký,,1
+Aj,,,12 L,Weise,,1
+Tv,,,12 L,Petáková,,1
+Nj1,,1,12 L,Břendová,,1
+Nj2,,1,12 L,Kramlová,,1
+Inf1,,1,12 L,Smejkal,Počítače,1
+Inf2,,1,12 L,Poprocký,Počítače,1
+Aj,,,12 L,Weise,,1
+MZ,prirodovedny,1,12 L,Poprocký,,1
+MZ,prirodovedny,1,12 L,Poprocký,,1
+Vv,,1,12 L,Málková,Ateliér,2
+Dv,,1,12 L,Venclík,,2
+M,,,12 L,Poprocký,,1
+KOM,humanitni,1,12 L,Říhová,,1
+SP,humanitni,1,12 L,Kramářová,,1
+Rp,,,12 L,Říhová,,1
+FyZ,prirodovedny,1,12 L,Poprocký,,1
+FyZ,prirodovedny,1,12 L,Poprocký,,1
+Čj,,,12 L,Břendová,,1
+Čj,,,12 L,Břendová,,1
+Ch,,,12 L,Motyčková,,1
+Hv,,,12 L,Čížková,Hudebna,1
+PED,humanitni,1,13 L,Haraštová,,1
+PED,humanitni,1,13 L,Haraštová,,1
+PED,humanitni,1,13 L,Haraštová,,1
+PSY,humanitni,1,13 L,Říhová,,1
+PSY,humanitni,1,13 L,Říhová,,1
+PSY,humanitni,1,13 L,Říhová,,1
+BiZ,prirodovedny,1,13 L,Kramářová,,1
+BiZ,prirodovedny,1,13 L,Kramářová,,1
+ChZ,prirodovedny,1,13 L,Motyčková,,1
+ChZ,prirodovedny,1,13 L,Motyčková,,1
+M,,,13 L,Pixa,,1
+Inf1,,1,13 L,Pixa,Počítače,1
+Inf2,,1,13 L,Pixa,Počítače,1
+Rj,,1,13 L,Kramlová,,2
+Nj,,1,13 L,Břendová,,2
+Tv,,,13 L,Petáková,Tělocvična,1
+Fyz,prirodovedny,1,13 L,Poprocký,,1
+Fyz,prirodovedny,1,13 L,Poprocký,,1
+M,,,13 L,Pixa,,1
+Vv,,,13 L,Málková,Ateliér,1
+D,,,13 L,Málková,,1
+MS,,,13 L,Břendová,,1
+E,,,13 L,Haraštová,,1
+Aj,,,13 L,Weise,,1
+Mz,prirodovedny,1,13 L,Pixa,,1
+Mz,prirodovedny,1,13 L,Pixa,,1
+KOM,humanitni,1,13 L,Říhová,,1
+SP,humanitni,1,13 L,Kramářová,,1
+Hv,,,13 L,Čížková,Hudebna,1
+Aj,,,13 L,Weise,,1
+Aj,,,13 L,Weise,,1
+Čj,,,13 L,Břendová,,1
+Th,,,13 L,Břendová,,1
+Eu,,,13 L,Janebová,,1
