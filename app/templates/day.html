@@ -14,7 +14,7 @@
       <form class="controls" method="get" action="/view/day">
         <label for="den">Den:</label>
         <select id="den" name="den" onchange="this.form.submit()">
-          {% for d in deny %}
+          {% for d in dny %}
             <option value="{{ d }}" {% if d == den %}selected{% endif %}>{{ d }}</option>
           {% endfor %}
         </select>

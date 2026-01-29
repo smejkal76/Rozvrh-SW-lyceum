@@ -14,7 +14,7 @@ from app.services.rozvrh_service import build_day_matrix, fetch_hodiny
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
 
-DENY = ["Po", "Ut", "St", "Ct", "Pa"]
+DNY = ["Po", "Ut", "St", "Ct", "Pa"]
 
 
 def get_db() -> Generator[Session, None, None]:
@@ -121,11 +121,11 @@ def view_day(
         )
 
     return templates.TemplateResponse(
-        "day.html",
+        "day.html",                         # konkrétní šablona, do které se budou vkládat data
         {
             "request": request,
             "den": den,
-            "deny": DENY,
+            "dny": DNY,
             "hodiny": getattr(matrix, "hodiny", []),
             "rows": rows,
         },
