@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Dotazy k projektu
+    url: https://github.com/<ORG>/<REPO>/discussions
+    about: Použijte GitHub Discussions pro obecné dotazy, které nejsou bug/feature.
