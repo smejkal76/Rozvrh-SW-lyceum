@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Přehled hodin</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Přehled hodin podle třídy a zaměření</h1>
+    <table>
+        <tr>
+            <th>Třída</th>
+            <th>Zaměření</th>
+            <th>Počet hodin</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.class }}</td>
+            <td>{{ item.specialization }}</td>
+            <td>{{ item.hours }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
