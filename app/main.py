@@ -6,6 +6,8 @@ from app.web.timetable import router as timetable_router
 app = FastAPI(title="Rozvrh SŠ")
 
 app.include_router(timetable_router)
+from app.web.classrooms import router as classrooms_router
+app.include_router(classrooms_router)
 
 # statické soubory (CSS)
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
