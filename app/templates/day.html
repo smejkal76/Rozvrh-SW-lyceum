@@ -9,6 +9,33 @@
 <body>
   <div class="wrap">
     <header class="top">
+        <div class="top-left">
+
+
+  <div class="actions">
+
+    <a href="/generate"><button>Vygenerovat rozvrh</button></a>
+
+    <a href="/view/teachers"><button>Učitelé</button></a>
+    <a href="/view/subjects"><button>Předměty</button></a>
+    <a href="/view/rooms"><button>Učebny</button></a>
+
+    <a href="/view/teacher-restrictions"><button>Omezení učitelů</button></a>
+    <a href="/view/room-restrictions"><button>Omezení učeben</button></a>
+    <a href="/view/schedule-restrictions"><button>Omezení rozvrhu</button></a>
+
+    <a href="/view/lessons"><button>Výpis hodin</button></a>
+
+  </div>
+
+</div>
+
+<div class="logo-title">
+
+<img src="/static/logo.png" alt="Logo rozvrhu" class="logo">
+
+
+</div>
       <h1>Rozvrh – {{ den }}</h1>
 
       <form class="controls" method="get" action="/view/day">
@@ -26,40 +53,78 @@
     {% if rows|length == 0 %}
       <p class="empty">Pro den {{ den }} není v rozvrhu žádná hodina.</p>
     {% else %}
-      <table class="timetable">
-        <thead>
-          <tr>
-            <th class="sticky-col">Třída</th>
-            {% for h in hodiny %}
-              <th>{{ h }}</th>
-            {% endfor %}
-          </tr>
-        </thead>
-        <tbody>
-          {% for r in rows %}
-            <tr>
-              <th class="sticky-col">{{ r.trida }}</th>
-              {% for cell in r.cells %}
-                <td>
-                  {% if cell %}
-                    {# render "Předmět\nUčitel" jako dva řádky #}
-                    {% set parts = cell.split('\n') %}
-                    <div class="cell">
-                      <div class="subject">{{ parts[0] }}</div>
-                      <div class="teacher">{{ parts[1] if parts|length > 1 else "" }}</div>
-                    </div>
-                  {% endif %}
-                </td>
-              {% endfor %}
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    {% endif %}
 
-    <footer class="foot">
-      <a href="/api/day?den={{ den }}">API JSON</a>
-    </footer>
-  </div>
+
+<table class="timetable">
+
+<thead>
+<tr>
+<th class="sticky-col">Třída</th>
+
+{% for h in hodiny %}
+<th>{{ h }}</th>
+{% endfor %}
+
+</tr>
+</thead>
+
+
+<tbody>
+
+{% for r in rows %}
+
+<tr>
+
+<th class="sticky-col">
+{{ r.trida }}
+</th>
+
+{% for cell in r.cells %}
+
+<td>
+
+{% if cell %}
+
+{% set parts = cell.split('\n') %}
+
+<div class="cell">
+
+<div class="subject">
+{{ parts[0] }}
+</div>
+
+<div class="teacher">
+{{ parts[1] if parts|length > 1 else "" }}
+</div>
+
+</div>
+
+{% endif %}
+
+</td>
+
+{% endfor %}
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endif %}
+
+
+<footer class="foot">
+
+<a class="api-link" href="/api/day?den={{ den }}">
+API JSON
+</a>
+
+</footer>
+
+</div>
+
 </body>
 </html>
