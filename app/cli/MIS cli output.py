@@ -1,1 +1,1 @@
-print("můj text")
+print("Předělaný text pro vyzkoušení merge to main.")
