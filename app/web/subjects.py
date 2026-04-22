@@ -9,7 +9,6 @@ from sqlalchemy.orm import Session
 from sqlalchemy import select
 
 from app.database import SessionLocal
-from app.models.predmet import Predmet
 from app.models.ucitel import Ucitel
 from app.models.trida import Trida
 from app.models.ucebna import Ucebna
@@ -28,7 +27,7 @@ def get_db() -> Generator[Session, None, None]:
         db.close()
 
 
-@router.get("/view/edit/subjects", response_class=HTMLResponse)
+@router.get("/view/subjects", response_class=HTMLResponse)
 def view_edit_subjects(
         request: Request,
         db: Session = Depends(get_db),
