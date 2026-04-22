@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Přehled hodin</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #eceef1;
+            min-height: 100vh;
+            padding: 52px 44px;
+        }
+
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: -0.6px;
+            color: #111;
+            margin-bottom: 5px;
+        }
+
+        .page-header p {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow:
+                0 0 0 1px rgba(0,0,0,0.04),
+                0 2px 4px rgba(0,0,0,0.04),
+                0 12px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            padding: 13px 24px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            color: #999;
+            text-align: right;
+            background: #f7f7f8;
+            border-bottom: 1px solid #e8e8ec;
+        }
+
+        thead th:first-child { text-align: left; }
+
+        tbody tr {
+            border-bottom: 1px solid #f0f0f3;
+            transition: background 0.15s;
+        }
+
+        tbody tr:last-child { border-bottom: none; }
+
+        tbody tr:not(.suma):hover { background: #fafafa; }
+
+        tbody td {
+            padding: 15px 24px;
+            font-size: 14px;
+            color: #555;
+            text-align: right;
+        }
+
+        tbody td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #111;
+        }
+
+        tbody td:last-child {
+            font-weight: 600;
+            color: #111;
+        }
+
+        tbody tr.suma {
+            background: #fff8f3;
+            border-top: 2px solid #f0e0d0;
+        }
+
+        tbody tr.suma td {
+            color: #111;
+            font-weight: 700;
+            font-size: 14px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        tbody tr.suma td:first-child {
+            color: #E87722;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        tbody tr.suma td:last-child {
+            color: #E87722;
+            font-size: 16px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 20px;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            border-radius: 980px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            background: #E87722;
+            color: white;
+            box-shadow: 0 4px 16px rgba(232,119,34,0.3);
+        }
+
+        .btn-export {
+            font-size: 12px;
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .btn-export:hover {
+            color: #E87722;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-header">
+        <h1>Přehled hodin</h1>
+        <p>Součet hodin za týden podle třídy a zaměření</p>
+    </div>
+
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Třída</th>
+                    {% for z in zamereni %}
+                    <th>{{ z }}</th>
+                    {% endfor %}
+                    <th>Suma</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in tridy %}
+                <tr>
+                    <td>{{ t }}</td>
+                    {% for z in zamereni %}
+                    <td>{{ data[t][z] }}</td>
+                    {% endfor %}
+                    <td>{{ radky_soucet[t] }}</td>
+                </tr>
+                {% endfor %}
+                <tr class="suma">
+                    <td>Celkem</td>
+                    {% for z in zamereni %}
+                    <td>{{ sloupce_soucet[z] }}</td>
+                    {% endfor %}
+                    <td>{{ celkem }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="actions">
+        <a class="btn-back" href="/view/day?den=Po">← Zpět na hlavní stránku</a>
+        <a class="btn-export" href="/view/reports/hours-summary/export">↓ exportovat CSV</a>
+    </div>
+
+</body>
+</html>
