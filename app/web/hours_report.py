@@ -21,7 +21,7 @@ def view_hours_summary(request: Request, db: Session = Depends(get_db)):
     rows = fetch_hours_summary(db)
     pivot = build_pivot(rows)
     return templates.TemplateResponse("hours_summary.html", {"request": request, "tridy": pivot.tridy, "zamereni": pivot.zamereni, "data": pivot.data, "radky_soucet": pivot.radky_soucet, "sloupce_soucet": pivot.sloupce_soucet, "celkem": pivot.celkem})
-@router.get("/view/reports/hours-summary/export")
+@router.get("/view/hours-summary/export")
 def export_hours_csv(db: Session = Depends(get_db)):
     rows = fetch_hours_summary(db)
     output = io.StringIO()
