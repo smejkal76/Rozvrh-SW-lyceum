@@ -9,7 +9,7 @@ router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
 
 
-@router.get("/view/edit/teachers")
+@router.get("/view/teachers")
 def teachers_list(request: Request, db: Session = Depends(get_db)):
     ucitele = list_ucitele(db)
     error = request.query_params.get("error")
