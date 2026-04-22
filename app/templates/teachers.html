@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Učitelé</title>
+</head>
+<body>
+
+<h1>Seznam učitelů</h1>
+
+{% if error == "has_relations" %}
+    <div style="color:red;">
+        Učitele nelze smazat – má přiřazené předměty.
+    </div>
+{% endif %}
+
+<a href="/view/teachers/new">Přidat učitele</a>
+
+<table border="1">
+    <tr>
+        <th>Jméno</th>
+        <th>Příjmení</th>
+        <th>Akce</th>
+    </tr>
+
+    {% for u in ucitele %}
+    <tr>
+        <td>{{ u.jmeno }}</td>
+        <td>{{ u.prijmeni }}</td>
+        <td>
+            <form method="post" action="/teachers/{{ u.id }}/delete">
+                <button type="submit">Smazat</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
