@@ -7,7 +7,7 @@ def list_ucitele(db):
 
 
 def create_ucitel(db, jmeno, prijmeni):
-    ucitel = Ucitel(jmeno=jmeno, prijmeni=prijmeni)
+    ucitel = Ucitel(prijmeni=prijmeni)
     db.add(ucitel)
     db.commit()
 

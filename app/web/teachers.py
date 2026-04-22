@@ -35,7 +35,7 @@ def create_teacher(
     db: Session = Depends(get_db)
 ):
     create_ucitel(db, jmeno, prijmeni)
-    return RedirectResponse("/view/edit/teachers", status_code=303)
+    return RedirectResponse("/view/teachers", status_code=303)
 
 
 @router.post("/teachers/{id}/delete")
@@ -43,6 +43,6 @@ def delete_teacher(id: int, db: Session = Depends(get_db)):
     success = delete_ucitel(db, id)
 
     if not success:
-        return RedirectResponse("/view/edit/teachers?error=has_relations", status_code=303)
+        return RedirectResponse("/view/teachers?error=has_relations", status_code=303)
 
-    return RedirectResponse("/view/edit/teachers", status_code=303)
+    return RedirectResponse("/view/teachers", status_code=303)
