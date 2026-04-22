@@ -16,7 +16,7 @@ def get_db() -> Generator[Session, None, None]:
         yield db
     finally:
         db.close()
-@router.get("/view/reports/hours-summary", response_class=HTMLResponse)
+@router.get("/view/hours-summary", response_class=HTMLResponse)
 def view_hours_summary(request: Request, db: Session = Depends(get_db)):
     rows = fetch_hours_summary(db)
     pivot = build_pivot(rows)
