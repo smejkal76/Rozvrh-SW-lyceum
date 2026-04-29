@@ -1,39 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Učitelé</title>
-</head>
-<body>
-
 <h1>Seznam učitelů</h1>
 
-{% if error == "has_relations" %}
-    <div style="color:red;">
-        Učitele nelze smazat – má přiřazené předměty.
-    </div>
-{% endif %}
+<a href="/view/day">
+    <button>Zpět na rozvrh</button>
+</a>
 
-<a href="/view/teachers/new">Přidat učitele</a>
+<a href="/view/teachers/new">
+    <button>Přidat učitele</button>
+</a>
 
-<table border="1">
+<table>
     <tr>
-        <th>Jméno</th>
         <th>Příjmení</th>
         <th>Akce</th>
     </tr>
 
     {% for u in ucitele %}
     <tr>
-        <td>{{ u.jmeno }}</td>
         <td>{{ u.prijmeni }}</td>
         <td>
-            <form method="post" action="/teachers/{{ u.id }}/delete">
-                <button type="submit">Smazat</button>
+            <!-- EDIT -->
+            <a href="/view/teachers/{{ u.id }}/edit">
+                <button>Editovat</button>
+            </a>
+
+            <!-- DELETE -->
+            <form action="/teachers/{{ u.id }}/delete" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Opravdu smazat?')">
+                    Smazat
+                </button>
             </form>
         </td>
     </tr>
     {% endfor %}
 </table>
-
-</body>
-</html>

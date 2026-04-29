@@ -1,0 +1,28 @@
+<h1>Omezení učitele: {{ ucitel.prijmeni }}</h1>
+
+<a href="/view/teachers">Zpět</a>
+<a href="/view/teachers/{{ ucitel.id }}/constraints/new">
+    <button>Přidat omezení</button>
+</a>
+
+<table>
+    <tr>
+        <th>Den</th>
+        <th>Od hodiny</th>
+        <th>Délka</th>
+        <th>Akce</th>
+    </tr>
+
+    {% for o in omezeni %}
+    <tr>
+        <td>{{ o.den }}</td>
+        <td>{{ o.hodina_od }}</td>
+        <td>{{ o.delka }}</td>
+        <td>
+            <form method="post" action="/constraints/{{ o.id }}/delete">
+                <button type="submit">Smazat</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

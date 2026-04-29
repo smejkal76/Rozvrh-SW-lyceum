@@ -20,7 +20,7 @@ from app.generator.engine import RozvrhGenerator
 from app.generator.persist import commit_schedule
 from app.generator.tasks import build_tasks, group_halves
 from app.generator.sort_tasks import sort_items
-from app.models.omezeni import (
+from app.models.casove_omezeni_ucitele import (
     CasoveOmezeniUcebny,
     CasoveOmezeniUcitele,
     CasoveOmezeniRozvrhu,

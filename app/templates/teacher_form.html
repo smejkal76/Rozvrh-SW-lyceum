@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Nový učitel</title>
-</head>
-<body>
+<h1>
+    {% if ucitel %}Editace učitele{% else %}Nový učitel{% endif %}
+</h1>
 
-<h1>Přidat učitele</h1>
+<form method="post"
+      action="{% if ucitel %}/teachers/{{ ucitel.id }}{% else %}/teachers{% endif %}">
 
-<form method="post" action="/teachers">
-    <label>Jméno:</label><br>
-    <input type="text" name="jmeno" required><br><br>
+    <label>Příjmení:</label>
+    <input type="text" name="prijmeni"
+           value="{{ ucitel.prijmeni if ucitel else '' }}" required>
 
-    <label>Příjmení:</label><br>
-    <input type="text" name="prijmeni" required><br><br>
+    <br><br>
 
     <button type="submit">Uložit</button>
 </form>
 
-<a href="/view/teachers">Zpět</a>
-
-</body>
-</html>
+<a href="/view/teachers">
+    <button>Zrušit</button>
+</a>

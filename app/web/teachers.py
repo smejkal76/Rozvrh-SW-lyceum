@@ -1,48 +1,53 @@
-from fastapi import APIRouter, Depends, Request, Form
-from fastapi.responses import RedirectResponse
-from sqlalchemy.orm import Session
-from app.services.ucitel_service import list_ucitele, create_ucitel, delete_ucitel
-from app.database import get_db
-from fastapi.templating import Jinja2Templates
+# seznam
+GET  /view/teachers
 
-router = APIRouter()
-templates = Jinja2Templates(directory="app/templates")
+# formuláře
+GET  /view/teachers/new
+GET  /view/teachers/{id}/edit
 
+# akce
+POST /teachers
+POST /teachers/{id}
+POST /teachers/{id}/delete
 
-@router.get("/view/teachers")
-def teachers_list(request: Request, db: Session = Depends(get_db)):
-    ucitele = list_ucitele(db)
-    error = request.query_params.get("error")
+from app.services.omezeni_ucitele_service import *
 
-    return templates.TemplateResponse("teachers.html", {
+@router.get("/view/teachers/{id}/constraints", response_class=HTMLResponse)
+def teacher_constraints(request: Request, id: int, db=Depends(get_db)):
+    ucitel = get_ucitel(db, id)
+    omezeni = db.query(CasoveOmezeniUcitel).filter(
+        CasoveOmezeniUcitel.id_ucitele == id
+    ).all()
+
+    return templates.TemplateResponse("teacher_constraints.html", {
         "request": request,
-        "ucitele": ucitele,
-        "error": error
+        "ucitel": ucitel,
+        "omezeni": omezeni
     })
 
-
-@router.get("/view/teachers/new")
-def new_teacher_form(request: Request):
-    return templates.TemplateResponse("teacher_form.html", {
-        "request": request
+@router.get("/view/teachers/{id}/constraints/new", response_class=HTMLResponse)
+def new_constraint(request: Request, id: int):
+    return templates.TemplateResponse("constraint_form.html", {
+        "request": request,
+        "id_ucitele": id
     })
 
-
-@router.post("/teachers")
-def create_teacher(
-    jmeno: str = Form(...),
-    prijmeni: str = Form(...),
-    db: Session = Depends(get_db)
+@router.post("/teachers/{id}/constraints")
+def create_constraint(
+    id: int,
+    den: str = Form(...),
+    hodina_od: int = Form(...),
+    delka: int = Form(...),
+    db=Depends(get_db)
 ):
-    create_ucitel(db, jmeno, prijmeni)
-    return RedirectResponse("/view/teachers", status_code=303)
+    create_omezeni_ucitele(db, id, den, hodina_od, delka)
+    return RedirectResponse(f"/view/teachers/{id}/constraints", status_code=303)
 
+@router.post("/constraints/{cid}/delete")
+def delete_constraint(cid: int, db=Depends(get_db)):
+    obj = get_omezeni_ucitele(db, cid)
+    teacher_id = obj.id_ucitele
 
-@router.post("/teachers/{id}/delete")
-def delete_teacher(id: int, db: Session = Depends(get_db)):
-    success = delete_ucitel(db, id)
+    delete_omezeni_ucitele(db, cid)
 
-    if not success:
-        return RedirectResponse("/view/teachers?error=has_relations", status_code=303)
-
-    return RedirectResponse("/view/teachers", status_code=303)
+    return RedirectResponse(f"/view/teachers/{teacher_id}/constraints", status_code=303)

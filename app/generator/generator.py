@@ -12,7 +12,7 @@ from engine import RozvrhGenerator
 from persist import commit_schedule
 from tasks import build_tasks, group_halves
 from sort_tasks import sort_items
-from app.models.omezeni import (
+from app.models.casove_omezeni_ucitele import (
     CasoveOmezeniUcebny,
     CasoveOmezeniUcitele,
     CasoveOmezeniRozvrhu,

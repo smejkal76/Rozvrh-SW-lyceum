@@ -5,3 +5,16 @@ class Ucitel(Base):
     __tablename__ = "ucitel"
     id = Column(Integer, primary_key=True)
     prijmeni = Column(String, unique=True, nullable=False)
+
+
+# seznam
+GET  /view/teachers
+
+# formuláře
+GET  /view/teachers/new
+GET  /view/teachers/{id}/edit
+
+# akce
+POST /teachers
+POST /teachers/{id}
+POST /teachers/{id}/delete

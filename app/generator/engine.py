@@ -17,7 +17,7 @@ from typing import Iterable, List, Tuple
 
 from app.generator.tasks import Uloha, SloucenaUloha
 from app.generator.calendars import Calendars
-from app.models.omezeni import DenEnum
+from app.models.casove_omezeni_ucitele import DenEnum
 
 INF = 10 ** 12
 

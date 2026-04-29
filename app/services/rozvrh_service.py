@@ -134,3 +134,98 @@ def build_day_matrix(
         hodiny=all_hours,
         cells=cells,
     )
+
+
+from sqlalchemy.orm import Session
+from app.models.casove_omezeni_ucitele import CasoveOmezeniUcitele
+
+
+def list_teacher_constraints(session: Session, teacher_id=None):
+
+    q = session.query(CasoveOmezeniUcitele)
+
+    if teacher_id:
+        q = q.filter(CasoveOmezeniUcitele.id_ucitele == teacher_id)
+
+    return q.all()
+
+
+def create_teacher_constraint(
+        session: Session,
+        id_ucitele: int,
+        den,
+        hodina_od: int,
+        delka: int):
+
+    obj = CasoveOmezeniUcitele(
+        id_ucitele=id_ucitele,
+        den=den,
+        hodina_od=hodina_od,
+        delka=delka
+    )
+
+    session.add(obj)
+    session.commit()
+
+    return obj
+
+
+def delete_teacher_constraint(session: Session, constraint_id: int):
+
+    obj = session.get(CasoveOmezeniUcitele, constraint_id)
+
+    if obj:
+        session.delete(obj)
+        session.commit()
+
+from app.models.casove_omezeni_ucitele import CasoveOmezeniUcitele
+
+
+def load_teacher_constraints(session):
+
+    rows = session.query(CasoveOmezeniUcitele).all()
+
+    busy = {}
+
+    for r in rows:
+
+        key = (r.id_ucitele, r.den.value)
+
+        if key not in busy:
+            busy[key] = {}
+
+        for i in range(r.delka):
+
+            h = r.hodina_od + i
+
+            busy[key][h] = True
+
+    return busy
+
+def teacher_free(busy, teacher_id, day, hour):
+
+    key = (teacher_id, day)
+
+    if key not in busy:
+        return True
+
+    if hour in busy[key]:
+        return False
+
+    return True
+
+    if not teacher_free(busy_ucitel, teacher_id, day, hour):
+        return
+
+def load_constraints(session, busy_ucitel, H):
+    rows = session.execute("""
+        SELECT id_ucitele, den, hodina_od, delka
+        FROM casove_omezeni_ucitele
+    """).fetchall()
+
+    for r in rows:
+        for h in range(r.hodina_od, r.hodina_od + r.delka):
+            busy_ucitel[(r.id_ucitele, r.den)][h] = True
+
+        if self.busy_ucitel[(ucitel, den)][h]:
+            return False

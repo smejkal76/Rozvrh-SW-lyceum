@@ -2,6 +2,11 @@ from sqlalchemy import Column, Integer, ForeignKey, Enum, UniqueConstraint, Stri
 from app.database import Base
 import enum
 
+import enum
+from sqlalchemy import Column, Integer, Enum, ForeignKey, UniqueConstraint
+from app.database import Base
+
+
 class DenEnum(enum.Enum):
     Po = "Po"
     Ut = "Ut"
@@ -9,16 +14,41 @@ class DenEnum(enum.Enum):
     Ct = "Ct"
     Pa = "Pa"
 
+
 class CasoveOmezeniUcitele(Base):
     __tablename__ = "casove_omezeni_ucitele"
+
     id = Column(Integer, primary_key=True)
-    id_ucitele = Column(Integer, ForeignKey("ucitel.id"), nullable=False)
-    den = Column(Enum(DenEnum), nullable=False)
-    hodina_od = Column(Integer, nullable=False)
-    delka = Column(Integer, nullable=False)
+
+    id_ucitele = Column(
+        Integer,
+        ForeignKey("ucitel.id"),
+        nullable=False
+    )
+
+    den = Column(
+        Enum(DenEnum),
+        nullable=False
+    )
+
+    hodina_od = Column(
+        Integer,
+        nullable=False
+    )
+
+    delka = Column(
+        Integer,
+        nullable=False
+    )
+
     __table_args__ = (
         UniqueConstraint("den", "hodina_od", "id_ucitele"),
     )
+
+
+
+
+
 
 class CasoveOmezeniUcebny(Base):
     __tablename__ = "casove_omezeni_ucebny"
