@@ -1,0 +1,1 @@
+print("Předělaný text pro vyzkoušení merge to main.")

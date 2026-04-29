@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Editace předmětů</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    .edit-subjects-container {
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    .edit-subjects-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 13px;
+    }
+
+    .edit-subjects-table th,
+    .edit-subjects-table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .edit-subjects-table th {
+      background-color: #2c5aa0;
+      color: white;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+    }
+
+    .edit-subjects-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .edit-subjects-table input[type="text"],
+    .edit-subjects-table input[type="number"],
+    .edit-subjects-table select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 13px;
+    }
+
+    .edit-subjects-table input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .action-buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      background-color: #2c5aa0;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #1e4070;
+    }
+
+    .btn-secondary {
+      background-color: #666;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #444;
+    }
+
+    .alert {
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <h1>Editace předmětů</h1>
+    </header>
+
+    <div class="edit-subjects-container">
+      {% if message %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endif %}
+
+      {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+      {% endif %}
+
+      {% if predmety|length == 0 %}
+        <p>V databázi nejsou žádné předměty.</p>
+      {% else %}
+        <form method="post" action="/subjects/change-teacher">
+          <table class="edit-subjects-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Název</th>
+                <th>Třída</th>
+                <th>Učitel</th>
+                <th>Učebna</th>
+                <th>Hodina</th>
+                <th>Počet hodin</th>
+                <th>Zaměření</th>
+                <th>Půlený</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for predmet in predmety %}
+                <tr>
+                  <td>{{ predmet.id }}</td>
+                  <td>{{ predmet.nazev }}</td>
+
+                  {# Třída #}
+                  <td>
+                    <select name="trida_{{ predmet.id }}">
+                      <option value="">-- Bez třidy --</option>
+                      {% for trida in tridy %}
+                        <option value="{{ trida.id }}"
+                                {% if trida.id == predmet.id_tridy %}selected{% endif %}>
+                          {{ trida.nazev }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </td>
+
+                  {# Učitel #}
+                  <td>
+                    <select name="teacher_{{ predmet.id }}">
+                      <option value="">-- Žádný --</option>
+                      {% for teacher in teachers %}
+                        <option value="{{ teacher.id }}"
+                                {% if teacher.id == predmet.id_ucitele %}selected{% endif %}>
+                          {{ teacher.prijmeni }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </td>
+
+                  {# Učebna #}
+                  <td>
+                    <select name="ucebna_{{ predmet.id }}">
+                      <option value="">-- Bez učebny --</option>
+                      {% for ucebna in ucebny %}
+                        <option value="{{ ucebna.id }}"
+                                {% if ucebna.id == predmet.id_ucebny %}selected{% endif %}>
+                          {{ ucebna.nazev }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </td>
+
+                  {# Hodina #}
+                  <td>
+                    <select name="hodina_{{ predmet.id }}">
+                      <option value="">-- Bez hodiny --</option>
+                      {% for hodina in hodiny %}
+                        <option value="{{ hodina.id }}"
+                                {% if hodina.id == predmet.id_hodiny %}selected{% endif %}>
+                          {{ hodina.nazev }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </td>
+
+                  {# Počet hodin #}
+                  <td>
+                    <input type="number" name="pocet_hodin_{{ predmet.id }}"
+                           value="{{ predmet.pocet_hodin }}" min="1" max="10">
+                  </td>
+
+                  {# Zaměření #}
+                  <td>
+                    <select name="zamereni_{{ predmet.id }}">
+                      <option value="vseobecny" {% if predmet.zamereni == 'vseobecny' %}selected{% endif %}>
+                        Všeobecný
+                      </option>
+                      <option value="humanitni" {% if predmet.zamereni == 'humanitni' %}selected{% endif %}>
+                        Humanitní
+                      </option>
+                      <option value="prirodovedny" {% if predmet.zamereni == 'prirodovedny' %}selected{% endif %}>
+                        Přírodovědný
+                      </option>
+                    </select>
+                  </td>
+
+                  {# Půlený #}
+                  <td style="text-align: center;">
+                    <input type="checkbox" name="puleny_{{ predmet.id }}"
+                           {% if predmet.puleny %}checked{% endif %}>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <div class="action-buttons">
+            <button type="submit" class="btn btn-primary">Uložit všechny změny</button>
+            <a href="/view/day?den=Po" class="btn btn-secondary">Zpět</a>
+          </div>
+        </form>
+      {% endif %}
+    </div>
+
+    <footer class="foot">
+      <p>&copy; Rozvrh SŠ</p>
+    </footer>
+  </div>
+</body>
+</html>

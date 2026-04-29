@@ -121,9 +121,9 @@ def view_day(
         )
 
     return templates.TemplateResponse(
-        "day.html",                         # konkrétní šablona, do které se budou vkládat data
-        {
-            "request": request,
+        request=request,
+        name="day.html",
+        context={
             "den": den,
             "dny": DNY,
             "hodiny": getattr(matrix, "hodiny", []),
