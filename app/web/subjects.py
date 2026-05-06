@@ -101,7 +101,7 @@ async def post_change_subjects(
 ):
     """
     POST /subjects/change-teacher
-    Zpracuje změnu všech polí u předmětů.
+    Zpracuje změnu všech polí u předmětů a mazání.
     Form data:
       - teacher_<id>=<new_teacher_id>
       - trida_<id>=<new_trida_id>
@@ -110,17 +110,35 @@ async def post_change_subjects(
       - pocet_hodin_<id>=<pocet>
       - puleny_<id>=on (checkbox)
       - zamereni_<id>=<enum_value>
+      - nazev_<id>=<text>
+      - delete_<id>=on (checkbox)
     """
     # Načti form data
     form = await request.form()
 
     changes_made = 0
+    deleted = 0
 
     # Procházej všechny položky ve formuláři
     for key, value in form.items():
         try:
+            # Mazání
+            if key.startswith("delete_"):
+                predmet_id = int(key.split("_")[1])
+                if value == "on":
+                    PredmetService.delete_predmet(db, predmet_id)
+                    deleted += 1
+
+            # Název
+            elif key.startswith("nazev_"):
+                predmet_id = int(key.split("_")[1])
+                new_nazev = str(value).strip()
+                if new_nazev:
+                    PredmetService.change_field(db, predmet_id, "nazev", new_nazev)
+                    changes_made += 1
+
             # Učitel
-            if key.startswith("teacher_"):
+            elif key.startswith("teacher_"):
                 predmet_id = int(key.split("_")[1])
                 new_teacher_id = int(value) if value else None
 
@@ -182,9 +200,16 @@ async def post_change_subjects(
             continue
 
     # Redirect zpět na formulář
+    msg_parts = []
     if changes_made > 0:
+        msg_parts.append(f"Změněno {changes_made} položek")
+    if deleted > 0:
+        msg_parts.append(f"Smazáno {deleted} řádků")
+
+    if msg_parts:
+        message = ", ".join(msg_parts) + "."
         return RedirectResponse(
-            url=f"/view/edit/subjects?message=Změněno%20{changes_made}%20položek.",
+            url=f"/view/edit/subjects?message={message.replace(' ', '%20').replace('.', '%2E').replace(',', '%2C')}",
             status_code=303
         )
     else:
