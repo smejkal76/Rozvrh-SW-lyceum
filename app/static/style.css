@@ -267,3 +267,7 @@ transform: scale(1.05);
     justify-content: flex-start;
     gap: 30px;
 }
+.logo {
+    max-height: 70px;
+    display: block;
+}

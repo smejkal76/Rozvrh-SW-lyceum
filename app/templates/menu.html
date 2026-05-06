@@ -1,0 +1,42 @@
+         <header class="top">
+
+  <a href="/view/day?den=Po">
+    <img src="/static/logo.png" class="logo" alt="Logo">
+  </a>
+
+  <div class="top-left">
+
+    <h1>
+  Rozvrh{% if den %} – {{ den }}{% endif %}
+</h1>
+
+    <div class="actions">
+
+      <a href="/view/teachers"><button>Učitelé</button></a>
+      <a href="/view/subjects"><button>Předměty</button></a>
+      <a href="/view/rooms"><button>Učebny</button></a>
+
+      <a href="/view/teacher-restrictions"><button>Omezení učitelů</button></a>
+      <a href="/view/room-restrictions"><button>Omezení učeben</button></a>
+      <a href="/view/schedule-restrictions"><button>Omezení rozvrhu</button></a>
+
+      <a href="/view/lessons"><button>Výpis hodin</button></a>
+
+      <a href="/generate"><button>Vygenerovat rozvrh</button></a>
+
+    </div>
+
+  </div>
+
+ {% if dny %}
+<form class="controls" method="get" action="/view/day">
+  <label for="den">Den:</label>
+  <select id="den" name="den" onchange="this.form.submit()">
+    {% for d in dny %}
+      <option value="{{ d }}" {% if d == den %}selected{% endif %}>{{ d }}</option>
+    {% endfor %}
+  </select>
+</form>
+{% endif %}
+
+</header>
