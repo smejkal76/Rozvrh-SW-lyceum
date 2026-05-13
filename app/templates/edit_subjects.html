@@ -55,6 +55,16 @@
       cursor: pointer;
     }
 
+    .delete-checkbox {
+      background-color: #ffcccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .delete-checkbox input[type="checkbox"] {
+      accent-color: #dc3545;
+    }
+
     .action-buttons {
       margin-top: 20px;
       display: flex;
@@ -108,9 +118,7 @@
 </head>
 <body>
   <div class="wrap">
-    <header class="top">
-      <h1>Editace předmětů</h1>
-    </header>
+  {% include "menu.html" %}
 
     <div class="edit-subjects-container">
       {% if message %}
@@ -128,7 +136,6 @@
           <table class="edit-subjects-table">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Název</th>
                 <th>Třída</th>
                 <th>Učitel</th>
@@ -137,13 +144,17 @@
                 <th>Počet hodin</th>
                 <th>Zaměření</th>
                 <th>Půlený</th>
+                <th style="background-color: #dc3545;">Smazat</th>
               </tr>
             </thead>
             <tbody>
               {% for predmet in predmety %}
                 <tr>
-                  <td>{{ predmet.id }}</td>
-                  <td>{{ predmet.nazev }}</td>
+                  {# Název – editable #}
+                  <td>
+                    <input type="text" name="nazev_{{ predmet.id }}"
+                           value="{{ predmet.nazev }}" placeholder="Název">
+                  </td>
 
                   {# Třída #}
                   <td>
@@ -222,6 +233,11 @@
                   <td style="text-align: center;">
                     <input type="checkbox" name="puleny_{{ predmet.id }}"
                            {% if predmet.puleny %}checked{% endif %}>
+                  </td>
+
+                  {# Smazat #}
+                  <td class="delete-checkbox">
+                    <input type="checkbox" name="delete_{{ predmet.id }}">
                   </td>
                 </tr>
               {% endfor %}
