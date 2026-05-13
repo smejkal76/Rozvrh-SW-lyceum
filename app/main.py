@@ -13,6 +13,7 @@ app.include_router(subjects_router)
 app.include_router(teachers_router)
 app.include_router(hours_report_router)
 
+from fastapi.staticfiles import StaticFiles
 # statické soubory (CSS)
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
