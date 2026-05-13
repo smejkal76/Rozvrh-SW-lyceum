@@ -8,20 +8,11 @@
 </head>
 <body>
   <div class="wrap">
-    <header class="top">
-        <div class="top-left">
+  {% include "menu.html" %}
 
 
   <div class="actions">
 
-    <a href="/generate"><button>Vygenerovat rozvrh</button></a>
-    <a href="/view/teachers"><button>Učitelé</button></a>
-    <a href="/view/subjects"><button>Předměty</button></a>
-    <a href="/view/rooms"><button>Učebny</button></a>
-    <a href="/view/teacher-restrictions"><button>Omezení učitelů</button></a>
-    <a href="/view/room-restrictions"><button>Omezení učeben</button></a>
-    <a href="/view/constraints"><button>Omezení rozvrhu</button></a>
-    <a href="/view/hours-summary"><button>Výpis hodin</button></a>
 
   </div>
 
@@ -29,22 +20,10 @@
 
 <div class="logo-title">
 
-<img src="/static/logo.png" alt="Logo rozvrhu" class="logo">
-
 
 </div>
-      <h1>Rozvrh – {{ den }}</h1>
 
-      <form class="controls" method="get" action="/view/day">
-        <label for="den">Den:</label>
-        <select id="den" name="den" onchange="this.form.submit()">
-          {% for d in dny %}
-            <option value="{{ d }}" {% if d == den %}selected{% endif %}>{{ d }}</option>
-          {% endfor %}
-        </select>
 
-        <noscript><button type="submit">Zobrazit</button></noscript>
-      </form>
     </header>
 
     {% if rows|length == 0 %}
@@ -113,13 +92,6 @@
 {% endif %}
 
 
-<footer class="foot">
-
-<a class="api-link" href="/api/day?den={{ den }}">
-API JSON
-</a>
-
-</footer>
 
 </div>
 

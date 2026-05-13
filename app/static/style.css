@@ -267,34 +267,7 @@ transform: scale(1.05);
     justify-content: flex-start;
     gap: 30px;
 }
-
-/* Constraints stránka */
-.form-section, .list-section {
-    margin: 1.5rem 0;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-}
-
-.form-section label {
+.logo {
+    max-height: 70px;
     display: block;
-    margin-bottom: 0.5rem;
-}
-
-.form-section input,
-.form-section select {
-    margin-left: 0.5rem;
-}
-
-.btn-delete {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.btn-delete:hover {
-    background-color: #a71d2a;
 }
