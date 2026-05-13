@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Učitelé</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
@@ -17,14 +18,12 @@
 
 <table border="1">
     <tr>
-        <th>Jméno</th>
         <th>Příjmení</th>
         <th>Akce</th>
     </tr>
 
     {% for u in ucitele %}
     <tr>
-        <td>{{ u.jmeno }}</td>
         <td>{{ u.prijmeni }}</td>
         <td>
             <form method="post" action="/teachers/{{ u.id }}/delete">
