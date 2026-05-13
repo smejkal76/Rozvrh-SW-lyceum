@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Časová omezení rozvrhu</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="wrap">
+  {% include "menu.html" %}
+
+<h1>Časová omezení rozvrhu</h1>
+
+<!-- FORMULÁŘ PRO PŘIDÁNÍ -->
+<section class="form-section">
+    <h2>Přidat omezení</h2>
+    <form action="/view/constraints/add" method="post">
+        <label>Název:
+            <input type="text" name="nazev" required placeholder="např. Kolegium">
+        </label>
+        <label>Den:
+            <select name="den" required>
+                {% for den in dny %}
+                    <option value="{{ den }}">{{ den }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>Hodina od:
+            <select name="hodina_od" required>
+                {% for h in hodiny %}
+                    <option value="{{ h }}">{{ h }}. hodina</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>Délka (hodin):
+            <input type="number" name="delka" min="1" max="7" value="1" required>
+        </label>
+        <button type="submit">Přidat</button>
+    </form>
+</section>
+
+<!-- SEZNAM OMEZENÍ -->
+<section class="list-section">
+    <h2>Aktuální omezení</h2>
+    {% if omezeni %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Název</th>
+                <th>Den</th>
+                <th>Hodina od</th>
+                <th>Délka</th>
+                <th>Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for o in omezeni %}
+            <tr>
+                <td>{{ o.id }}</td>
+                <td>{{ o.nazev }}</td>
+                <td>{{ o.den.value }}</td>
+                <td>{{ o.hodina_od }}.</td>
+                <td>{{ o.delka }}</td>
+                <td>
+                    <form action="/view/constraints/delete/{{ o.id }}"
+                          method="post"
+                          onsubmit="return confirm('Smazat omezení {{ o.nazev }}?')">
+                        <button type="submit" class="btn-delete">Smazat</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Žádná omezení nejsou zadána.</p>
+    {% endif %}
+</section>
+</body>
+</html>

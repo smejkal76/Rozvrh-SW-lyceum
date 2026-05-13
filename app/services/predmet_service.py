@@ -27,7 +27,7 @@ class PredmetService:
         Args:
             db: Session
             predmet_id: ID předmětu
-            field_name: Název pole (id_ucitele, id_tridy, id_ucebny, id_hodiny, pocet_hodin, puleny, zamereni)
+            field_name: Název pole (id_ucitele, id_tridy, id_ucebny, id_hodiny, pocet_hodin, puleny, zamereni, nazev)
             new_value: Nová hodnota
 
         Raises:
@@ -63,3 +63,21 @@ class PredmetService:
         return db.execute(
             select(Ucitel).order_by(Ucitel.prijmeni)
         ).scalars().all()
+
+    @staticmethod
+    def delete_predmet(db: Session, predmet_id: int):
+        """
+        Smaže předmět podle ID.
+
+        Raises:
+            ValueError: Pokud předmět neexistuje
+        """
+        predmet = db.execute(
+            select(Predmet).where(Predmet.id == predmet_id)
+        ).scalar_one_or_none()
+
+        if predmet is None:
+            raise ValueError(f"Předmět s ID {predmet_id} neexistuje.")
+
+        db.delete(predmet)
+        db.commit()
