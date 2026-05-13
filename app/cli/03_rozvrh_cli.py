@@ -4,7 +4,7 @@
 
 from app.database import SessionLocal
 from app.models.ucitel import Ucitel
-from app.models.omezeni import CasoveOmezeniUcebny, CasoveOmezeniUcitele, DenEnum
+from app.models.casove_omezeni_ucitele import CasoveOmezeniUcebny, CasoveOmezeniUcitele, DenEnum
 from app.generator.calendars import Calendars, DAYS
 
 # Mapování DenEnum -> index 0..4

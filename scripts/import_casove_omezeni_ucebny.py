@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from app.database import SessionLocal
 from app.models.ucebna import Ucebna
-from app.models.omezeni import CasoveOmezeniUcebny  # mapování dle omezeni.py
+from app.models.casove_omezeni_ucitele import CasoveOmezeniUcebny  # mapování dle casove_omezeni_ucitele.py
 
 CSV_PATH = "data/omezeni_ucebny.csv"
 

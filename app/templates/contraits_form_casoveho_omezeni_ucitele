@@ -1,0 +1,31 @@
+<h1>Nové omezení</h1>
+
+<form method="post" action="/teachers/{{ id_ucitele }}/constraints">
+
+    <label>Den:</label>
+    <select name="den">
+        <option>Po</option>
+        <option>Ut</option>
+        <option>St</option>
+        <option>Ct</option>
+        <option>Pa</option>
+    </select>
+
+    <br>
+
+    <label>Od hodiny:</label>
+    <input type="number" name="hodina_od" min="1" max="7" required>
+
+    <br>
+
+    <label>Délka:</label>
+    <input type="number" name="delka" min="1" max="7" required>
+
+    <br><br>
+
+    <button type="submit">Uložit</button>
+</form>
+
+<a href="/view/teachers/{{ id_ucitele }}/constraints">
+    <button>Zrušit</button>
+</a>

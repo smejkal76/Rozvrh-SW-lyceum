@@ -7,9 +7,9 @@ from app.models.predmet import Predmet
 from app.models.trida import Trida
 from app.models.ucitel import Ucitel
 from app.models.ucebna import Ucebna
-from app.models.omezeni import CasoveOmezeniUcebny
-from app.models.omezeni import CasoveOmezeniUcitele
-from app.models.omezeni import CasoveOmezeniRozvrhu
+from app.models.casove_omezeni_ucitele import CasoveOmezeniUcebny
+from app.models.casove_omezeni_ucitele import CasoveOmezeniUcitele
+from app.models.casove_omezeni_ucitele import CasoveOmezeniRozvrhu
 
 
 if __name__ == "__main__":

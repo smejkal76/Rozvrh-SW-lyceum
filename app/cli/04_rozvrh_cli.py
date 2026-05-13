@@ -3,7 +3,7 @@
 """
 
 from app.database import SessionLocal
-from app.models.omezeni import CasoveOmezeniUcebny, CasoveOmezeniUcitele
+from app.models.casove_omezeni_ucitele import CasoveOmezeniUcebny, CasoveOmezeniUcitele
 from app.generator.calendars import Calendars
 from app.generator.tasks import build_tasks
 

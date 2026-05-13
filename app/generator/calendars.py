@@ -14,7 +14,7 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Dict, List
 
-from app.models.omezeni import DenEnum
+from app.models.casove_omezeni_ucitele import DenEnum
 
 # Mapování dny v týdnu
 DAY_TO_IDX: Dict[str, int] = {"Po": 0, "Ut": 1, "St": 2, "Ct": 3, "Pa": 4}

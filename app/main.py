@@ -25,3 +25,8 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 @app.get("/")
 def root():
     return {"ok": True, "open": "/view/day?den=Po"}
+
+
+from app.web.teachers import router as teachers_router
+
+app.include_router(teachers_router)

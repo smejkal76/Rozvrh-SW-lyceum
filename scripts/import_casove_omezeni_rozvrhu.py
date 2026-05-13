@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy import select
 from app.database import SessionLocal
-from app.models.omezeni import CasoveOmezeniRozvrhu, DenEnum
+from app.models.casove_omezeni_ucitele import CasoveOmezeniRozvrhu, DenEnum
 
 CSV_PATH = "data/omezeni_rozvrhu.csv"
 REQUIRED = ["nazev", "den", "hodina_od", "delka"]
